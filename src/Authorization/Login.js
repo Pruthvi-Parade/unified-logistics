@@ -34,22 +34,23 @@ const Login = () => {
         }
       });
 
-    // await axios
-    //   .post("/admin-api/login", {
-    //     username: values.username,
-    //     password: values.password,
-    //   })
-    //   .then((res) => {
-    //     // console.log(res);
-    //     localStorage.setItem("AdminToken", res.data.data.token);
-    //     localStorage.setItem("RoleToken", res.data.data.role_token);
-    //     // navigate();
-    //     window.location.href = location?.state?.from || "/";
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //     message.error("Login failed - " + err.message);
-    //   });
+    await axios
+      .post("/login", {
+        username: values.username,
+        password: values.password,
+      })
+      .then((res) => {
+        // // console.log(res);
+        // localStorage.setItem("AdminToken", res.data.data.token);
+        // localStorage.setItem("RoleToken", res.data.data.role_token);
+        // // navigate();
+        localStorage.setItem("isLoggedIn",true);
+        window.location.href = location?.state?.from || "/";
+      })
+      .catch((err) => {
+        console.log(err);
+        message.error("Login failed - " + err.message);
+      });
   };
 
   const onFinishFailed = (errorInfo) => {

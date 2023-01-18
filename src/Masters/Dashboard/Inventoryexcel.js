@@ -1,216 +1,122 @@
-import { Button, Divider, Spin, Table } from "antd";
+import { Carousel, Image, Button, Col, Divider, Row } from 'antd';
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { DownloadOutlined, RollbackOutlined } from "@ant-design/icons";
-import * as excelJS from "exceljs";
-import { saveAs } from "file-saver";
 import { Navigate, useNavigate } from "react-router-dom";
-
-const columns = [
-    {
-        title: <b>Map Id</b>,
-        dataIndex: "map_id",
-        key: "map_id",
-    },
-    {
-        title: <b>Flight Number</b>,
-        dataIndex: "flight_number",
-        key: "flight_number",
-    },
-    {
-        title: <b> AWB Number</b>,
-        dataIndex: "awb_number",
-        key: "awb_number",
-    },
-    {
-        title: <b>Piece ID</b>,
-        dataIndex: "piece_id",
-        key: "piece_id",
-    },
-    {
-        title: <b>EPC</b>,
-        dataIndex: "epc",
-        key: "epc",
-    },
-    {
-        title: <b>Created Time</b>,
-        dataIndex: "created_time",
-        key: "created_time",
-    },
-    {
-        title: <b>updated time</b>,
-        dataIndex: "updated_time",
-        key: "updated_time",
-    },
-    {
-        title: <b> Floor</b>,
-        dataIndex: "floor",
-        key: "floor",
-    },
-    {
-        title: <b>Zone</b>,
-        dataIndex: "zone",
-        key: "zone",
-    },
-    {
-        title: <b>Status</b>,
-        dataIndex: "status",
-        key: "status",
-    },
-];
-// const data = [{
-//     "map_id": 47,
-//     "flight_number": "Ek5041758840786",
-//     "awb_number": "4794581794",
-//     "piece_id": "JJD0030131590000860",
-//     "epc": "E28000000000000000519902",
-//     "created_time": "2022-08-11T13:54:37.697092",
-//     "updated_time": "2022-10-18T17:24:14.861073",
-//     "user_id": 1,
-//     "floor": "GROUND FLOOR",
-//     "zone": "PX-02",
-//     "status": "DISPATCH",
-//     "store_id": 1
-// },];
-
+const style = {
+    background: '#F5F5F5',
+    padding: '8px 0',
+    widht: '100px',
+};
 export default function Inventory_Excel() {
-    // const [header, setHeader] = useState([]);
-    // const [body, setBody] = useState([]);
-    // const [zone, setZone] = useState([]);
-    // const [duration, setDuration] = useState([]);
-    // const [index, setIndex] = useState([]);
-    // const [index_data, setIndexdate] = useState([]);
-    // const [location, setLocation] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [downloading, setDownloading] = useState(false);
-
-    const navigate = useNavigate();
-
-    async function test () {
-        setDownloading(true);
-
-        const workbook = new excelJS.Workbook();
-        workbook.creator = "test";
-        workbook.lastModifiedBy = "test";
-        workbook.created = new Date();
-        workbook.modified = new Date();
-
-        let sheet = workbook.addWorksheet("inventory");
-        const row = sheet.getRow(1);
-        row.eachCell((cell, rowNumber) => {
-            sheet.getColumn(rowNumber).alignment = {
-                vertical: "middle",
-                horizontal: "center",
-            };
-            sheet.getColumn(rowNumber).font = { size: 14, family: 2 };
-        });
-
-        console.log(workbook.xlsx);
-
-        // http://192.168.1.187:5023/inventory/inventory_excel_
-        await axios
-            .get("inventory/inventory_excel_")
-            .then((response) => {
-                console.log(response);
-
-                // setHeader(response?.data?.header[0]);
-                // setBody(response?.data?.data);
-
-                const header = response?.data?.header[0];
-                const body = response?.data?.data;
-
-
-                sheet.getRow(1).values = header;
-                // sheet.getRow(1).fill = {
-                //     type: "pattern",
-                //     pattern: "solid",
-
-                //     bgColor: { argb: "004e47cc" },
-                // };
-                // sheet.getRow(1).style="#FAFAD2";
-                // console.log(location.unshift("Last Location"))       location.unshift("Last Location");
-                let he = [];
-                for (let i = 0; i < header.length; i++) {
-                    he[i] = { key: header[i], width: 30 };
-                    // he.append( { key: header[i], width: 30 });
-                }
-                sheet.columns = he;
-                console.log(body);
-                sheet.addRows(response?.data?.data);
-
-                workbook.xlsx.writeBuffer().then(function (buffer) {
-                    // done
-                    console.log(buffer);
-
-                    const blob = new Blob([buffer], {
-                        type: "applicationi/xlsx",
-                    });
-                    saveAs(blob, "myexcel.xlsx");
-                    console.log(buffer);
-                });
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-        setDownloading(false);
-    }
-    const [dataSource, setDataSource] = useState([]);
-    function getData() {
-        axios
-            .get("/inventory/Inventory_excel")
-            .then((response) => {
-                console.log(response);
-                setDataSource(
-                    response?.data?.sort((a, b) => a.map_id - b.map_id)
-                );
-                if (response.status === 200) {
-                    setLoading(false);
-                }
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-    }
-
-    useEffect(() => {
-        getData();
-    }, []);
 
     return (
         <>
-            <Divider orientation="left">Inventory </Divider>
-            <div className="FileTable">
-                <Button
-                    style={{ float: "left", marginBottom: "1%" }}
-                    type="primary"
-                    icon={<RollbackOutlined />}
-                    title="Back"
-                    onClick={() => {
-                        navigate("/masters/dashboard/dashboard");
-                        console.log("heeey");
+            <Carousel autoplay>
+                <div style={{background: '#364d79'}}>
+                    <Image preview={false} style={{ marginTop: '50px', height: "160px", width: "500px"}} src="/Routelogo.png"/>
+                </div>
+                <div>
+                    <Image preview={false} style={{height: "360px", width: "1300px"}} src="/Ship.jpg"/>
+                </div>
+                <div>
+                    <Image preview={false} style={{height: "360px", width: "1300px"}} src="/Truck.jpg"/>
+                </div>
+                <div>
+                    <Image preview={false} style={{height: "360px", width: "1300px"}} src="/Signup.jpg"/>
+                </div>
+            </Carousel>
+            <div
+                style={{
+                    marginTop : '20px',
+                    padding: '20px',
+                    textAlign: 'center'
+                }}
+                >
+                <h2>Sign up a business account now to enjoy personalized rates and pay within our standard 15-day credit term</h2>
+            </div>
+            <Button style={{background: 'orange', color: 'white', height: '60px'}}>
+                Open a Business Account
+            </Button>
+            <Divider orientation="left">Why open a business account?</Divider>
+                <div style={{margin: '20px'}}>
+                <Row
+                    gutter={{
+                        xs: 8,
+                        sm: 16,
+                        md: 24,
+                        lg: 32,
                     }}
                 >
-                    Back
-                </Button>
-
-                <Button
-                    style={{ float: "right", marginBottom: "1%" }}
-                    type="primary"
-                    icon={<DownloadOutlined />}
-                    title="Download"
-                    onClick={test}
-                    disabled={downloading}
-                    loading={downloading}
-
-                >
-                    Download
-                </Button>
-                <Table
-                    columns={columns}
-                    loading={loading}
-                    dataSource={dataSource}
-                />
-            </div>
+                    <Col className="gutter-row" span={6}>
+                        <div style={style}>
+                            <Image src='/budget.png' style={{ height:'100px'}}/>
+                            <h3>Personalised rates</h3>
+                            <h4>Receive discounts based on your shipping volume.</h4>
+                        </div>
+                    </Col>
+                    <Col className="gutter-row" span={6}>
+                        <div style={style}>
+                        <Image src='/cargo.png' style={{ height:'100px'}}/>
+                            <h3>Manage pickup</h3>
+                            <h4>Complete online scheduling and management of pickups and shipments.</h4>
+                        </div>
+                    </Col>
+                    <Col className="gutter-row" span={6}>
+                        <div style={style}>
+                        <Image src='/laptop.png' style={{ height:'100px'}}/>
+                            <h3>Advanced shipping tool</h3>
+                            <h4>Streamlined, an online shipping tool built for shippers and shipments of all types and sizes.</h4>
+                        </div>
+                    </Col>
+                    <Col className="gutter-row" span={6}>
+                        <div style={style}>
+                        <Image src='/settings.png' style={{ height:'100px'}}/>
+                            <h3>Comprehensive customs tools</h3>
+                            <h4>Global Trade ManagerTM a resource for international shipping information.</h4>
+                        </div>
+                    </Col>
+                </Row> 
+                </div>
+                <div style={{ margin: '20px'}}>
+                    <Row
+                        gutter={{
+                            xs: 8,
+                            sm: 16,
+                            md: 24,
+                            lg: 32,
+                        }}
+                    >
+                        <Col className="gutter-row" span={6}>
+                            <div style={style}>
+                                <Image src='/budget.png' style={{ height:'100px'}}/>
+                                <h3>Personalised rates</h3>
+                                <h4>Receive discounts based on your shipping volume.</h4>
+                            </div>
+                        </Col>
+                        <Col className="gutter-row" span={6}>
+                            <div style={style}>
+                            <Image src='/truck.png' style={{ height:'100px'}}/>
+                                <h3>Manage pickup</h3>
+                                <h4>Complete online scheduling and management of pickups and shipments.</h4>
+                            </div>
+                        </Col>
+                        <Col className="gutter-row" span={6}>
+                            <div style={style}>
+                            <Image src='/supplies.png' style={{ height:'100px'}}/>
+                                <h3>Supplies</h3>
+                                <h4>Free Unified Logistics packaging and shipping supplies.</h4>
+                            </div>
+                        </Col>
+                        <Col className="gutter-row" span={6}>
+                            <div style={style}>
+                            <Image src='/user.png' style={{ height:'100px'}}/>
+                                <h3>Account management</h3>
+                                <h4>Online account management tools including online billing, and address book, and more.</h4>
+                            </div>
+                        </Col>
+                    </Row>
+                </div>            
         </>
     );
 }
