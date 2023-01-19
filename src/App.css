@@ -1,6 +1,16 @@
 .App {
     text-align: center;
 }
+.container1.img{
+    -webkit-filter: invert(1);
+    filter: invert(1);
+}
+/* .wrapper {
+    display: grid;
+    grid-template-columns: repeat(1);
+    align-items: left;
+    background-color: #191970;
+} */
 .Counter {
     width: 200px;
     height: 200px;

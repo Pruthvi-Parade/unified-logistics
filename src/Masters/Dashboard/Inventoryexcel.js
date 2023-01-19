@@ -1,122 +1,129 @@
-import { Carousel, Image, Button, Col, Divider, Row } from 'antd';
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { DownloadOutlined, RollbackOutlined } from "@ant-design/icons";
-import { Navigate, useNavigate } from "react-router-dom";
-const style = {
-    background: '#F5F5F5',
-    padding: '8px 0',
-    widht: '100px',
-};
-export default function Inventory_Excel() {
+import { PlusOutlined } from '@ant-design/icons';
+import {
+  Button,
+  Cascader,
+  Checkbox,
+  DatePicker,
+  Form,
+  Input,
+  InputNumber,
+  Radio,
+  Select,
+  Switch,
+  TreeSelect,
+  Upload,
+} from 'antd';
+import { useState } from 'react';
+const { RangePicker } = DatePicker;
+const { TextArea } = Input;
 
+export default function Inventoryexcel() {
+    const [componentDisabled, setComponentDisabled] = useState(true);
+    const onFormLayoutChange = ({ disabled }) => {
+        setComponentDisabled(disabled);
+    };
     return (
-        <>
-            <Carousel autoplay>
-                <div style={{background: '#364d79'}}>
-                    <Image preview={false} style={{ marginTop: '50px', height: "160px", width: "500px"}} src="/Routelogo.png"/>
-                </div>
-                <div>
-                    <Image preview={false} style={{height: "360px", width: "1300px"}} src="/Ship.jpg"/>
-                </div>
-                <div>
-                    <Image preview={false} style={{height: "360px", width: "1300px"}} src="/Truck.jpg"/>
-                </div>
-                <div>
-                    <Image preview={false} style={{height: "360px", width: "1300px"}} src="/Signup.jpg"/>
-                </div>
-            </Carousel>
-            <div
-                style={{
-                    marginTop : '20px',
-                    padding: '20px',
-                    textAlign: 'center'
-                }}
-                >
-                <h2>Sign up a business account now to enjoy personalized rates and pay within our standard 15-day credit term</h2>
-            </div>
-            <Button style={{background: 'orange', color: 'white', height: '60px'}}>
-                Open a Business Account
-            </Button>
-            <Divider orientation="left">Why open a business account?</Divider>
-                <div style={{margin: '20px'}}>
-                <Row
-                    gutter={{
-                        xs: 8,
-                        sm: 16,
-                        md: 24,
-                        lg: 32,
-                    }}
-                >
-                    <Col className="gutter-row" span={6}>
-                        <div style={style}>
-                            <Image src='/budget.png' style={{ height:'100px'}}/>
-                            <h3>Personalised rates</h3>
-                            <h4>Receive discounts based on your shipping volume.</h4>
-                        </div>
-                    </Col>
-                    <Col className="gutter-row" span={6}>
-                        <div style={style}>
-                        <Image src='/cargo.png' style={{ height:'100px'}}/>
-                            <h3>Manage pickup</h3>
-                            <h4>Complete online scheduling and management of pickups and shipments.</h4>
-                        </div>
-                    </Col>
-                    <Col className="gutter-row" span={6}>
-                        <div style={style}>
-                        <Image src='/laptop.png' style={{ height:'100px'}}/>
-                            <h3>Advanced shipping tool</h3>
-                            <h4>Streamlined, an online shipping tool built for shippers and shipments of all types and sizes.</h4>
-                        </div>
-                    </Col>
-                    <Col className="gutter-row" span={6}>
-                        <div style={style}>
-                        <Image src='/settings.png' style={{ height:'100px'}}/>
-                            <h3>Comprehensive customs tools</h3>
-                            <h4>Global Trade ManagerTM a resource for international shipping information.</h4>
-                        </div>
-                    </Col>
-                </Row> 
-                </div>
-                <div style={{ margin: '20px'}}>
-                    <Row
-                        gutter={{
-                            xs: 8,
-                            sm: 16,
-                            md: 24,
-                            lg: 32,
-                        }}
-                    >
-                        <Col className="gutter-row" span={6}>
-                            <div style={style}>
-                                <Image src='/budget.png' style={{ height:'100px'}}/>
-                                <h3>Personalised rates</h3>
-                                <h4>Receive discounts based on your shipping volume.</h4>
-                            </div>
-                        </Col>
-                        <Col className="gutter-row" span={6}>
-                            <div style={style}>
-                            <Image src='/truck.png' style={{ height:'100px'}}/>
-                                <h3>Manage pickup</h3>
-                                <h4>Complete online scheduling and management of pickups and shipments.</h4>
-                            </div>
-                        </Col>
-                        <Col className="gutter-row" span={6}>
-                            <div style={style}>
-                            <Image src='/supplies.png' style={{ height:'100px'}}/>
-                                <h3>Supplies</h3>
-                                <h4>Free Unified Logistics packaging and shipping supplies.</h4>
-                            </div>
-                        </Col>
-                        <Col className="gutter-row" span={6}>
-                            <div style={style}>
-                            <Image src='/user.png' style={{ height:'100px'}}/>
-                                <h3>Account management</h3>
-                                <h4>Online account management tools including online billing, and address book, and more.</h4>
-                            </div>
-                        </Col>
-                    </Row>
-                </div>            
-        </>
-    );
+        <>HIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII</>
+        // <>
+        //     <Checkbox
+        //         checked={componentDisabled}
+        //         onChange={(e) => setComponentDisabled(e.target.checked)}
+        //     >
+        //         Form disabled
+        //     </Checkbox>
+        //     <Form
+        //         labelCol={{
+        //         span: 4,
+        //         }}
+        //         wrapperCol={{
+        //         span: 14,
+        //         }}
+        //         layout="horizontal"
+        //         onValuesChange={onFormLayoutChange}
+        //         disabled={componentDisabled}
+        //     >
+        //         <Form.Item label="Checkbox" name="disabled" valuePropName="checked">
+        //         <Checkbox>Checkbox</Checkbox>
+        //         </Form.Item>
+        //         <Form.Item label="Radio">
+        //         <Radio.Group>
+        //             <Radio value="apple"> Apple </Radio>
+        //             <Radio value="pear"> Pear </Radio>
+        //         </Radio.Group>
+        //         </Form.Item>
+        //         <Form.Item label="Input">
+        //         <Input />
+        //         </Form.Item>
+        //         <Form.Item label="Select">
+        //         <Select>
+        //             <Select.Option value="demo">Demo</Select.Option>
+        //         </Select>
+        //         </Form.Item>
+        //         <Form.Item label="TreeSelect">
+        //         <TreeSelect
+        //             treeData={[
+        //             {
+        //                 title: 'Light',
+        //                 value: 'light',
+        //                 children: [
+        //                 {
+        //                     title: 'Bamboo',
+        //                     value: 'bamboo',
+        //                 },
+        //                 ],
+        //             },
+        //             ]}
+        //         />
+        //         </Form.Item>
+        //         <Form.Item label="Cascader">
+        //         <Cascader
+        //             options={[
+        //             {
+        //                 value: 'zhejiang',
+        //                 label: 'Zhejiang',
+        //                 children: [
+        //                 {
+        //                     value: 'hangzhou',
+        //                     label: 'Hangzhou',
+        //                 },
+        //                 ],
+        //             },
+        //             ]}
+        //         />
+        //         </Form.Item>
+        //         <Form.Item label="DatePicker">
+        //         <DatePicker />
+        //         </Form.Item>
+        //         <Form.Item label="RangePicker">
+        //         <RangePicker />
+        //         </Form.Item>
+        //         <Form.Item label="InputNumber">
+        //         <InputNumber />
+        //         </Form.Item>
+        //         <Form.Item label="TextArea">
+        //         <TextArea rows={4} />
+        //         </Form.Item>
+        //         <Form.Item label="Switch" valuePropName="checked">
+        //         <Switch />
+        //         </Form.Item>
+        //         <Form.Item label="Upload" valuePropName="fileList">
+        //         <Upload action="/upload.do" listType="picture-card">
+        //             <div>
+        //             <PlusOutlined />
+        //             <div
+        //                 style={{
+        //                 marginTop: 8,
+        //                 }}
+        //             >
+        //                 Upload
+        //             </div>
+        //             </div>
+        //         </Upload>
+        //         </Form.Item>
+        //         <Form.Item label="Button">
+        //         <Button>Button</Button>
+        //         </Form.Item>
+        //     </Form>
+        // </>
+  )
 }

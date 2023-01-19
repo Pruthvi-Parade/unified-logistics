@@ -109,7 +109,7 @@ export default function Mappingcount() {
     return (
         <div className="Weekly-Monthly-Graph">
             <Card title={msg}>
-                <Spin tip="Generating Graph" spinning={loading}>
+                <Spin tip="Generating Graph" loading={loading}>
                     <Column {...config} />
                 </Spin>
             </Card>
