@@ -24,7 +24,7 @@ export default function Inventoryexcel() {
         setComponentDisabled(disabled);
     };
 
-    const [isSubmit, setSubmit] = useState(true);
+    const [isSubmit, setSubmit] = useState(false);
 
     return isSubmit ? (
         <>

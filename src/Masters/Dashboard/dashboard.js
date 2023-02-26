@@ -44,6 +44,7 @@ const style = {
 
 export default function Dashboard() {
     const navigate = useNavigate();
+    
     return (
         <>
             <Carousel autoplay>

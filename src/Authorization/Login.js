@@ -1,56 +1,43 @@
 import { Form, Input, Button, Typography, message, Card } from "antd";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 // import "antd/dist/antd.css";
 import axios from "axios";
+import userData from './users.json'
 const { Title } = Typography;
 
 const Login = () => {
   const location = useLocation();
-
+  const navigate = useNavigate();
   const onFinish = async (values) => {
-     let Payload = new FormData();
 
-    Payload.append("username", values.username);
-    Payload.append("password", values.password);
+    // for (let i = 0; i < userData.length; i++) {
+      // console.log(userData);
+      // console.log(userData[i].username, " ", userData[i].password);
+      // console.log(typeof(userData[0].username), " ", typeof(userData[0].password));
+      // console.log(values.username, " ", values.password);
+      // console.log(typeof(values.username), " ", typeof(values.password));
 
-    await axios
-      .post('/login', Payload)
-      .then((response) => {
-        console.log(response);
-        if (response.status === 200) {
-          localStorage.setItem("isLoggedIn", "true");
-          window.location.href = location?.state?.from || "/masters/dashboard/dashboard"; // temp comment here need to redirect '/' initially
-        } else {
-          message.error(response.detail);
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-        if (error.response.status === 400) {
-          message.error(error.response.data.detail);
-        } else {
-          console.log(error);
-          message.error("Login Failed : " + error.response.data.detail[0].msg);
-        }
-      });
 
-    await axios
-      .post("/login", {
+      // if (userData[1].name == values.username && userData[1].password == values.password) {
+      //   console.log("yesss");
+      //   navigate(`/masters/dashboard/dashboard`);
+      // }
+      // else
+      //   continue;
+    // }
+    // alert("Invalid Credentials");
+
+    axios.post('/login',{
+      params: {
         username: values.username,
-        password: values.password,
-      })
-      .then((res) => {
-        // // console.log(res);
-        // localStorage.setItem("AdminToken", res.data.data.token);
-        // localStorage.setItem("RoleToken", res.data.data.role_token);
-        // // navigate();
-        localStorage.setItem("isLoggedIn",true);
-        window.location.href = location?.state?.from || "/";
-      })
-      .catch((err) => {
-        console.log(err);
-        message.error("Login failed - " + err.message);
-      });
+        password: values.password
+      }
+    }).then(response=>{
+      console.log(response);
+    }).catch(err=>{
+      console.log(err);
+    })
+
   };
 
   const onFinishFailed = (errorInfo) => {

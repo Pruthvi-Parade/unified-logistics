@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "antd/dist/antd.css";
 import "../../App.css";
+import devliveryProducts from './delivered.json';
 import {
     message,
     Button,
@@ -10,46 +11,47 @@ import {
 
 export default function Dumpfile() {
 
-    const [dataSource, setDataSource] = useState();
+    useEffect(()=>{
+        setDataSource(devliveryProducts)
+    },[devliveryProducts])
+
+    const [dataSource, setDataSource] = useState(devliveryProducts);
+    
     const columns = [
         {
-            title: <b>File ID</b>,
-            // title: <b>File ID</b>,
-            dataIndex: "file_id",
-            key: "file_id",
-            // ...getColumnSearchProps('file_id'),
+            title: <b>Tracking ID</b>,
+            dataIndex: "trackingId",
+            key: "trackingId",
         },
         {
             title: <b>Date</b>,
             dataIndex: "date",
             key: "date",
-            // render: (text, record) =>
-            //     moment(text).format("YYYY-MM-DD hh:mm:ss a"),
         },
         {
-            title: <b>File name</b>,
-            dataIndex: "file_name",
-            key: "file_name",
+            title: <b>Product name</b>,
+            dataIndex: "productName",
+            key: "productName",
         },
         {
             title: <b>Vehical number</b>,
-            dataIndex: "vehical_number",
-            key: "vehical_number",
+            dataIndex: "vehicalNumber",
+            key: "vehicalNumber",
         },
         {
             title: <b>Total items</b>,
-            dataIndex: "total_items",
-            key: "total_items",
+            dataIndex: "totalItems",
+            key: "totalItems",
         },
         {
-            title: <b>Store ID</b>,
-            dataIndex: "store_id",
-            key: "store_id",
+            title: <b>Warehouse ID</b>,
+            dataIndex: "warehouseId",
+            key: "warehouseId",
         },
         {
             title: <b>Action</b>,
-            dataIndex: "file_id",
-            key: "file_id",
+            dataIndex: "trackingId",
+            key: "trackingId",
             align: "center",
             render: (record) => (
                 <>
@@ -57,32 +59,10 @@ export default function Dumpfile() {
                         <Popconfirm
                             placement="top"
                             title={"Some random delete"}
-                            // onConfirm={() => {
-                            //     console.log(record);
-                            //     let Payload = new FormData();
-                            //     Payload.append("file_id", parseInt(record));
-                            //     axios
-                            //         .get(`/files/delete?file_id=${record}`)
-                            //         .then((response) => {
-                            //             // console.log(response);
-                            //             if (response.status === 200) {
-                            //                 getData();
-                            //                 message.success(
-                            //                     "File Deleted Successfully"
-                            //                 );
-                            //             } else {
-                            //                 message.error(
-                            //                     "File Deletetion Failed"
-                            //                 );
-                            //             }
-                            //         })
-                            //         .catch((error) => {
-                            //             console.log(error);
-                            //         });
-                            // }}
                             okText="Yes"
                             cancelText="No"
                         >
+                            <Button type="primary" style={{marginRight: "10px"}}>Check</Button>
                             <Button type="danger">Delete</Button>
                         </Popconfirm>
                     }
