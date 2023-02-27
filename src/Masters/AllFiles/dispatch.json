@@ -1,5 +1,5 @@
 [
-    {"trackingId": "1", 
+    {"trackingId": 1, 
     "step1": "Order Recieved", 
     "step1_1": "Prduct ordered name", 
     "step2": "Order Shipped", 
@@ -11,7 +11,7 @@
     "OrderDeliverToday": false,
     "OrderDelivered": true
     },
-    {"trackingId": "1", 
+    {"trackingId": 1, 
     "step1": "Order Recieved", 
     "step1_1": "Prduct ordered name", 
     "step2": "Order Shipped", 
@@ -23,7 +23,7 @@
     "OrderDeliverToday": false,
     "OrderDelivered": true
     },
-    {"trackingId": "1", 
+    {"trackingId": 1, 
     "step1": "Order Recieved", 
     "step1_1": "Prduct ordered name", 
     "step2": "Order Shipped", 
@@ -35,7 +35,7 @@
     "OrderDeliverToday": false,
     "OrderDelivered": true
     },
-    {"trackingId": "1", 
+    {"trackingId": 1, 
     "step1": "Order Recieved", 
     "step1_1": "Prduct ordered name", 
     "step2": "Order Shipped", 
@@ -47,7 +47,7 @@
     "OrderDeliverToday": false,
     "OrderDelivered": true
     },
-    {"trackingId": "1", 
+    {"trackingId": 1, 
     "step1": "Order Recieved", 
     "step1_1": "Prduct ordered name", 
     "step2": "Order Shipped", 
@@ -59,7 +59,7 @@
     "OrderDeliverToday": false,
     "OrderDelivered": true
     },
-    {"trackingId": "1", 
+    {"trackingId": 1, 
     "step1": "Order Recieved", 
     "step1_1": "Prduct ordered name", 
     "step2": "Order Shipped", 
@@ -71,7 +71,7 @@
     "OrderDeliverToday": false,
     "OrderDelivered": true
     },
-    {"trackingId": "1", 
+    {"trackingId": 1, 
     "step1": "Order Recieved", 
     "step1_1": "Prduct ordered name", 
     "step2": "Order Shipped", 
@@ -83,7 +83,7 @@
     "OrderDeliverToday": false,
     "OrderDelivered": true
     },
-    {"trackingId": "1", 
+    {"trackingId": 1, 
     "step1": "Order Recieved", 
     "step1_1": "Prduct ordered name", 
     "step2": "Order Shipped", 
@@ -95,7 +95,7 @@
     "OrderDeliverToday": false,
     "OrderDelivered": true
     },
-    {"trackingId": "1", 
+    {"trackingId": 1, 
     "step1": "Order Recieved", 
     "step1_1": "Prduct ordered name", 
     "step2": "Order Shipped", 
@@ -107,7 +107,7 @@
     "OrderDeliverToday": false,
     "OrderDelivered": true
     },
-    {"trackingId": "1", 
+    {"trackingId": 1, 
     "step1": "Order Recieved", 
     "step1_1": "Prduct ordered name", 
     "step2": "Order Shipped", 
@@ -119,7 +119,7 @@
     "OrderDeliverToday": false,
     "OrderDelivered": true
     },
-    {"trackingId": "1", 
+    {"trackingId": 1, 
     "step1": "Order Recieved", 
     "step1_1": "Prduct ordered name", 
     "step2": "Order Shipped", 
@@ -131,7 +131,7 @@
     "OrderDeliverToday": false,
     "OrderDelivered": true
     },
-    {"trackingId": "1", 
+    {"trackingId": 1, 
     "step1": "Order Recieved", 
     "step1_1": "Prduct ordered name", 
     "step2": "Order Shipped", 

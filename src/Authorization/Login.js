@@ -10,34 +10,18 @@ const Login = () => {
   const navigate = useNavigate();
   const onFinish = async (values) => {
 
-    // for (let i = 0; i < userData.length; i++) {
-      // console.log(userData);
-      // console.log(userData[i].username, " ", userData[i].password);
-      // console.log(typeof(userData[0].username), " ", typeof(userData[0].password));
-      // console.log(values.username, " ", values.password);
-      // console.log(typeof(values.username), " ", typeof(values.password));
-
-
-      // if (userData[1].name == values.username && userData[1].password == values.password) {
-      //   console.log("yesss");
-      //   navigate(`/masters/dashboard/dashboard`);
-      // }
-      // else
-      //   continue;
-    // }
-    // alert("Invalid Credentials");
-
-    axios.post('/login',{
-      params: {
-        username: values.username,
-        password: values.password
+    for (let i = 0; i < userData.length; i++) {
+      if (values.username == "admin" && values.password == "admin" ||
+          values.username == "pruthvi" && values.password == "pruthvi" ||
+          values.username == "ajinkya" && values.password == "mane" ||
+          values.username == "abhishek" && values.password == "abhishek"
+          ) {
+        console.log("yesss");
+        navigate(`/masters/dashboard/dashboard`);
       }
-    }).then(response=>{
-      console.log(response);
-    }).catch(err=>{
-      console.log(err);
-    })
-
+      else
+        continue;
+    }
   };
 
   const onFinishFailed = (errorInfo) => {

@@ -14,7 +14,7 @@ import Inventory_Excel from "./Masters/Dashboard/Inventoryexcel";
 import Liveshipmentinbond from "./Masters/Dashboard/Liveshipmentinbond";
 import Mappingcount from "./Masters/Dashboard/Mappingcount";
 import Shipnow from "./Masters/Dashboard/Shipnow";
-
+import Payment from "./Masters/Dashboard/Payment"
 function App() {
     let location = useLocation();
 
@@ -93,6 +93,10 @@ function App() {
                              <Route
                                 path="shipnow"
                                 element={<Shipnow />}
+                            />
+                            <Route
+                                path="payments"
+                                element={<Payment />}
                             />
                         </Route>
                     </Route>

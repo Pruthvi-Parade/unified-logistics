@@ -58,12 +58,12 @@ export default function Dumpfile() {
                     {
                         <Popconfirm
                             placement="top"
-                            title={"Some random delete"}
+                            title={"Confirm your selection"}
                             okText="Yes"
                             cancelText="No"
                         >
-                            <Button type="primary" style={{marginRight: "10px"}}>Check</Button>
-                            <Button type="danger">Delete</Button>
+                            <Button type="primary" size={"small"} style={{marginRight: "10px"}}>Check</Button>
+                            <Button type="danger" size={"small"}>Delete</Button>
                         </Popconfirm>
                     }
                 </>
