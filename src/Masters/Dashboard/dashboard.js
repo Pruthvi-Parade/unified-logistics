@@ -1,40 +1,10 @@
-// import "antd/dist/antd.css"; // or 'antd/dist/antd.less'
-// import { Link } from "react-router-dom";
-// import { Divider, List } from "antd";
-// import React from "react";
-// const data = [
-//     { item: <b>Our Clients and Products</b>, route: "inventoryexcel" },
-//     { item: <b>Live shipment in bond</b>, route: "liveshipmentinbond" },
-//     { item: <b>Inventory Mapping count</b>, route: "mappingcount" },
-// ];
-
-// const path = "/masters/dashboard/";
-
-// export default function Dashboard() {
-//     return (
-//         <>
-//             <Divider orientation="left"><h2><b>Home Page</b></h2></Divider>
-//             <List
-//                 size="large"
-//                 header={<div><b>Dashboard Menu</b></div>}
-//                 bordered
-//                 dataSource={data}
-//                 renderItem={(item, a) => (
-//                     <List.Item>
-//                         <Link style={{ color: "inherit" }} to={path + item.route}>
-//                             {item.item}
-//                         </Link>
-//                     </List.Item>
-//                 )}
-//             />
-//         </>
-//     );
-// }
 import { Carousel, Image, Button, Col, Divider, Row, Form, Card, Input } from 'antd';
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { DownloadOutlined, RollbackOutlined } from "@ant-design/icons";
+import pincodes from './pin.json'
 import { useNavigate } from "react-router-dom";
+
 const style = {
     background: '#F5F5F5',
     padding: '8px 0',
@@ -44,7 +14,20 @@ const style = {
 
 export default function Dashboard() {
     const navigate = useNavigate();
-    
+    const onFinish = (values) =>{
+        console.log(values);
+        for (let i = 0; i < pincodes.length; i++) {
+            for (let j = 0; j < pincodes.length; j++) {
+                if (values.pickpinnumber == pincodes[i] && values.droppinnumber == pincodes[j])
+                {
+                    navigate("/masters/dashboard/shipnow");
+                }
+            }
+        }   
+        }
+    const onFinishFailed = () =>{
+        alert("Failed to proceed")
+    }
     return (
         <>
             <Carousel autoplay>
@@ -125,8 +108,8 @@ export default function Dashboard() {
                                     initialValues={{
                                     remember: true,
                                     }}
-                                    // onFinish={onFinish}
-                                    // onFinishFailed={onFinishFailed}
+                                    onFinish={onFinish}
+                                    onFinishFailed={onFinishFailed}
                                     autoComplete="off"
                                 >
                                     <Form.Item
@@ -182,9 +165,7 @@ export default function Dashboard() {
                                         htmlType="submit"
                                         size="large"
                                         style={{ width: "150%" }}
-                                        onClick={() => {
-                                            navigate("/masters/dashboard/shipnow");
-                                        }}
+                                        // onClick={handleCick}
                                     >
                                         Ship Now
                                     </Button>
