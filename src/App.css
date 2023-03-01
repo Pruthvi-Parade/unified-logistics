@@ -1,3 +1,5 @@
+@import "~antd/dist/antd.css";
+
 .App {
     text-align: center;
 }
@@ -26,6 +28,26 @@
   	font-family:"Playfair Display", serif; 
 	font-weight:400;
 }
+.ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
+    /* background-color: rgba(255, 255, 255, 0.2); */
+    background-color: rgba(255, 133, 0, 0.9);
+  }
+  .ant-menu-item:hover {
+    /* background-color: rgba(255, 255, 255, 0.2); */
+    background-color: rgba(255, 133, 0, 0.66);
+  }
+
+  .overview-cards:hover {
+    box-shadow: 0 0 3pt 2pt rgba(255, 133, 0, 1);
+    color: rgba(255, 133, 0, 1);
+    cursor: pointer;
+    /* border: 2px solid ; */
+  }
+  
+  .overview-cards:hover .ant-card-head {
+    color: rgba(255, 133, 0, 1);
+  }
+  
 :root {
     --test: rgb(248, 57, 184);
 

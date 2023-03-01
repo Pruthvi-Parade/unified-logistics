@@ -7,5 +7,35 @@
         "totalItems": "20",
         "warehouseId": "46432GYTF5643",
         "action": true
+    },
+
+    {
+        "trackingId": "12erfre4234ef",
+        "date": "Tuesday : 14-02-2023",
+        "productName": "Medicines",
+        "vehicalNumber": "MH-12-IH-9267",
+        "totalItems": "220",
+        "warehouseId": "46432GYTF5643",
+        "action": true
+    },
+
+    {
+        "trackingId": "2312dfdfg4",
+        "date": "Tuesday : 14-02-2023",
+        "productName": "Medical Equipment",
+        "vehicalNumber": "MH-12-IH-9267",
+        "totalItems": "10",
+        "warehouseId": "46432GYTF5643",
+        "action": true
+    },
+
+    {
+        "trackingId": "1dfe323232",
+        "date": "Tuesday : 14-02-2023",
+        "productName": "Electric Vehicles",
+        "vehicalNumber": "MH-12-IH-9267",
+        "totalItems": "200",
+        "warehouseId": "46432GYTF5643",
+        "action": true
     }
 ]

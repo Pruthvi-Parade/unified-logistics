@@ -94,30 +94,13 @@ export default function SideBar({ collapsed, onCollapse }) {
         >
             <div
                 className="logo"
-                style={{
-                    height: "63px",
-                    background: "white",
-                }}
-            >
-                {collapsed ? (
-                    <img
-                        src="/Routelogo.png"
-                        alt="logo"
-                        style={{
-                            width: 77,
-                            float: "left",
-                        }}
-                    ></img>
-                ) : (
-                    <img
-                        src="/Routelogo.png"
-                        alt="logo"
-                        style={{
-                            width: 170,
-                            padding: "10px",
-                        }}
-                    ></img>
-                )}
+                style={{background:"white"}}
+            > <img
+                src="/Routelogo.png"
+                alt="logo"
+                height="62px"
+                width="100%"
+            />
             </div>
             <Menu
                 theme="dark"

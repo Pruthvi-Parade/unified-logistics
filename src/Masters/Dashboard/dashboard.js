@@ -16,15 +16,11 @@ export default function Dashboard() {
     const navigate = useNavigate();
     const onFinish = (values) =>{
         console.log(values);
-        for (let i = 0; i < pincodes.length; i++) {
-            for (let j = 0; j < pincodes.length; j++) {
-                if (values.pickpinnumber == pincodes[i] && values.droppinnumber == pincodes[j])
-                {
-                    navigate("/masters/dashboard/shipnow");
-                }
-            }
-        }   
+        if (values.pickpinnumber != null && values.droppinnumber != null)
+        {
+            navigate("/masters/dashboard/shipnow");
         }
+    }
     const onFinishFailed = () =>{
         alert("Failed to proceed")
     }
