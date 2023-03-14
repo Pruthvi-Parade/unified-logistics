@@ -1,8 +1,6 @@
-import { Carousel, Image, Button, Col, Divider, Row, Form, Card, Input } from 'antd';
+import { Carousel, Image, Button, Col, Divider, Row, Form, Card, Input, Modal } from 'antd';
 import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { DownloadOutlined, RollbackOutlined } from "@ant-design/icons";
-import pincodes from './pin.json'
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const style = {
@@ -14,12 +12,73 @@ const style = {
 
 export default function Dashboard() {
     const navigate = useNavigate();
-    const onFinish = (values) =>{
-        console.log(values);
-        if (values.pickpinnumber != null && values.droppinnumber != null)
-        {
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const showModal = () => {
+        setIsModalOpen(true);
+      };
+    const handleOk = () => {
+        setIsModalOpen(false);
             navigate("/masters/dashboard/shipnow");
+      };
+      const handleCancel = () => {
+        setIsModalOpen(false);
+      };
+    const [pickup, setpickup] = useState(
+        {
+            block: "",
+            circle: "",
+            country: "",
+            district: "",
+            division: "",
         }
+    );
+    const [drop, setDrop] = useState(
+        {
+            block: "",
+            circle: "",
+            country: "",
+            district: "",
+            division: "",
+        }
+    );
+
+    const onFinish = (values) =>{
+        
+        axios.get(`https://api.postalpincode.in/pincode/${values.pickpinnumber}`)
+        .then((response)=>{
+            const data = response.data[0].PostOffice[0];
+            console.log(data);
+            setpickup({
+                block: data.Block,
+                circle: data.Circle,
+                country: data.Country,
+                district: data.District,
+                division: data.Division,
+            })
+            setIsModalOpen(true);
+        })
+        .catch((error)=>{
+            alert("Invalid Pincode");
+        })
+        axios.get(`https://api.postalpincode.in/pincode/${values.droppinnumber}`)
+        .then((response)=>{
+            const data = response.data[0].PostOffice[0];
+            console.log(data);
+            setDrop({
+                block: data.Block,
+                circle: data.Circle,
+                country: data.Country,
+                district: data.District,
+                division: data.Division,
+            })
+        })
+        .catch((error)=>{
+            alert("Invalid Pincode");
+        })
+        // console.log(values);
+        // if (values.pickpinnumber != null && values.droppinnumber != null)
+        // {
+        // }
     }
     const onFinishFailed = () =>{
         alert("Failed to proceed")
@@ -262,7 +321,25 @@ export default function Dashboard() {
                             </div>
                         </Col>
                     </Row>
-                </div>            
+                </div>   
+            <Modal title="Confirm the delevery Details" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+                <Row>
+                    <Col span={12}>
+                        <p>block: {pickup.block}</p>
+                        <p>circle: {pickup.circle}</p>
+                        <p>country: {pickup.country}</p>
+                        <p>district: {pickup.district}</p>
+                        <p>division: {pickup.division}</p>
+                    </Col>
+                    <Col span={12}>
+                        <p>block: {drop.block}</p>
+                        <p>circle: {drop.circle}</p>
+                        <p>country: {drop.country}</p>
+                        <p>district: {drop.district}</p>
+                        <p>division: {drop.division}</p>
+                    </Col>
+                </Row>
+            </Modal>
         </>
     );
 }
