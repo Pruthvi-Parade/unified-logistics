@@ -14,7 +14,8 @@ import {
   Upload,
   Card,
   Row,
-  Col
+  Col,
+  Modal
 } from 'antd';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -29,7 +30,25 @@ export default function Inventoryexcel() {
 
     const navigate = useNavigate();
     const [isSubmit, setSubmit] = useState(false);
+    const [details, setDetails] = useState();
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
+    const handleOk = () => {
+        setIsModalOpen(false);
+        navigate('/masters/dashboard/payments')
+    };
+      const handleCancel = () => {
+        setIsModalOpen(false);
+      };
+      
+      const onFinish = (values) =>{
+        console.log("ygqiuwrhgquwhgowirgoiqw");
+        setDetails(values);
+        console.log(details);
+    }
+    const onFinishFailed = () =>{
+        alert("Failed to proceed")
+    }
     return isSubmit ? (
         <>
             <Card title="Shipment Report">
@@ -70,7 +89,15 @@ export default function Inventoryexcel() {
         <h1>Customer Details</h1>
         <Row>
             <Col span={18}>
-                <Form>
+            <Form
+                name="basic"
+                labelCol={{span: 8,}}
+                wrapperCol={{span: 16,}}
+                initialValues={{remember: true}}
+                onFinish={onFinish}
+                onFinishFailed={onFinishFailed}
+                autoComplete="off"
+            >
                 <Form.Item label="Name">
                 <Input />
                 </Form.Item>
@@ -122,6 +149,12 @@ export default function Inventoryexcel() {
                 <Form.Item label="Handeling Instructions">
                 <TextArea rows={4} />
                 </Form.Item>
+                <Form.Item label="Pickup Address">
+                <TextArea rows={4} />
+                </Form.Item>
+                <Form.Item label="Drop Address">
+                <TextArea rows={4} />
+                </Form.Item>
                 <Form.Item label="Is Fragile ?" valuePropName="checked">
                 <Switch />
                 </Form.Item>
@@ -134,13 +167,33 @@ export default function Inventoryexcel() {
                     </div>
                     </div>
                 </Upload>
+                </Form.Item>    
+                <Form.Item label={"Submit"}>
+                <Button type='primary' size={'large'} onClick={navigate('/masters/dashboard/payments')}>Make Payment</Button>
                 </Form.Item>
-                <Form.Item label="Submit and make payment">
-                <Button type='primary' size={'large'} onClick={()=>{navigate('/masters/dashboard/payments')}}>Make Payment</Button>
-                </Form.Item>
-            </Form>
+                </Form>
             </Col>
         </Row>  
+        <div>
+        <Modal title="Confirm the delevery Details" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+                <Row>
+                    <Col span={12}>
+                        {/* <p>block: {pickup.block}</p>
+                        <p>circle: {pickup.circle}</p>
+                        <p>country: {pickup.country}</p>
+                        <p>district: {pickup.district}</p>
+                        <p>division: {pickup.division}</p> */}
+                    </Col>
+                    <Col span={12}>
+                        {/* <p>block: {drop.block}</p>
+                        <p>circle: {drop.circle}</p>
+                        <p>country: {drop.country}</p>
+                        <p>district: {drop.district}</p>
+                        <p>division: {drop.division}</p> */}
+                    </Col>
+                </Row>
+            </Modal>
+        </div>
      </>
   )
 }

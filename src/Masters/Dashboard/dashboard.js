@@ -3,19 +3,11 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const style = {
-    background: '#F5F5F5',
-    padding: '8px 0',
-    widht: '100px',
-};
-
+const style = { background: '#F5F5F5', padding: '8px 0', widht: '100px',};
 
 export default function Dashboard() {
     const navigate = useNavigate();
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const showModal = () => {
-        setIsModalOpen(true);
-      };
     const handleOk = () => {
         setIsModalOpen(false);
             navigate("/masters/dashboard/shipnow");
@@ -58,7 +50,7 @@ export default function Dashboard() {
             setIsModalOpen(true);
         })
         .catch((error)=>{
-            alert("Invalid Pincode");
+            alert(`Sorry, our services is not available in this area : ${values.pickpinnumber}`);
         })
         axios.get(`https://api.postalpincode.in/pincode/${values.droppinnumber}`)
         .then((response)=>{
@@ -73,12 +65,8 @@ export default function Dashboard() {
             })
         })
         .catch((error)=>{
-            alert("Invalid Pincode");
+            alert(`Sorry, our services is not available in this area : ${values.droppinnumber}`);
         })
-        // console.log(values);
-        // if (values.pickpinnumber != null && values.droppinnumber != null)
-        // {
-        // }
     }
     const onFinishFailed = () =>{
         alert("Failed to proceed")
@@ -101,14 +89,7 @@ export default function Dashboard() {
             </Carousel>
             <h2>Send from your Location, to Anywhere in the Country</h2>
             <div style={{background: '#6082B6'}}>
-            <Row
-                    gutter={{
-                        xs: 8,
-                        sm: 16,
-                        md: 24,
-                        lg: 32,
-                    }}
-                >
+            <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32, }} >
                     <Col className="gutter-row" span={12}>
                         <Col className="gutter-row" span={6}>
                             <div style={style}>
@@ -154,15 +135,9 @@ export default function Dashboard() {
                                 {/* <Title style={{ color: "black" }}>ULI Login</Title> */}
                                 <Form
                                     name="basic"
-                                    labelCol={{
-                                    span: 8,
-                                    }}
-                                    wrapperCol={{
-                                    span: 16,
-                                    }}
-                                    initialValues={{
-                                    remember: true,
-                                    }}
+                                    labelCol={{span: 8,}}
+                                    wrapperCol={{span: 16,}}
+                                    initialValues={{remember: true}}
                                     onFinish={onFinish}
                                     onFinishFailed={onFinishFailed}
                                     autoComplete="off"
@@ -170,22 +145,11 @@ export default function Dashboard() {
                                     <Form.Item
                                     style={{ color: "black" }}
                                     label={
-                                        <p
-                                        style={{
-                                            fontSize: "15px",
-                                            color: "black",
-                                            marginTop: "18px",
-                                        }}
-                                        >
-                                        Pickup PIN
-                                        </p>
+                                        <p style={{ fontSize: "15px",color: "black",marginTop: "18px",}}>Pickup PIN</p>
                                     }
                                     name="pickpinnumber"
                                     rules={[
-                                        {
-                                        required: true,
-                                        message: "Please input your Pickup PIN!",
-                                        },
+                                        {required: true,message: "Please input your Pickup PIN!"}
                                     ]}
                                     >
                                     <Input size="large" />
@@ -193,35 +157,17 @@ export default function Dashboard() {
 
                                     <Form.Item
                                     label={
-                                        <p
-                                        style={{
-                                            color: "black",
-                                            fontSize: "15px",
-                                            marginTop: "18px",
-                                        }}
-                                        >
-                                        Drop PIN
-                                        </p>
+                                        <p style={{ color: "black", fontSize: "15px", marginTop: "18px",}}>Drop PIN</p>
                                     }
                                     name="droppinnumber"
                                     rules={[
-                                        {
-                                        required: true,
-                                        message: "Please input your Drop PIN!",
-                                        },
+                                        {required: true, message: "Please input your Drop PIN!"}
                                     ]}
                                     >
                                     <Input size="large" />
                                     </Form.Item>
-
                                     <Form.Item>
-                                    <Button
-                                        type="primary"
-                                        htmlType="submit"
-                                        size="large"
-                                        style={{ width: "150%" }}
-                                        // onClick={handleCick}
-                                    >
+                                    <Button type="primary" htmlType="submit" size="large" style={{ width: "150%" }}>
                                         Ship Now
                                     </Button>
                                     </Form.Item>
@@ -232,12 +178,7 @@ export default function Dashboard() {
                 </Row>
             </div>
             <div
-                style={{
-                    marginTop : '20px',
-                    padding: '20px',
-                    textAlign: 'center'
-                }}
-                >
+                style={{marginTop : '20px', padding: '20px', textAlign: 'center' }}>
                 <h2>Sign up a business account now to enjoy personalized rates and pay within our standard 15-day credit term</h2>
             </div>
             <Button style={{background: 'orange', color: 'white', height: '60px'}}>
@@ -245,14 +186,7 @@ export default function Dashboard() {
             </Button>
             <Divider orientation="left">Why open a business account?</Divider>
                 <div style={{margin: '20px'}}>
-                <Row
-                    gutter={{
-                        xs: 8,
-                        sm: 16,
-                        md: 24,
-                        lg: 32,
-                    }}
-                >
+                <Row gutter={{xs: 8,sm: 16,md: 24,lg: 32,}} >
                     <Col className="gutter-row" span={6}>
                         <div style={style}>
                             <Image src='/budget.png' style={{ height:'100px'}}/>
@@ -284,14 +218,7 @@ export default function Dashboard() {
                 </Row> 
                 </div>
                 <div style={{ margin: '20px'}}>
-                    <Row
-                        gutter={{
-                            xs: 8,
-                            sm: 16,
-                            md: 24,
-                            lg: 32,
-                        }}
-                    >
+                    <Row gutter={{xs: 8,sm: 16, md: 24,lg: 32,}} >
                         <Col className="gutter-row" span={6}>
                             <div style={style}>
                                 <Image src='/budget.png' style={{ height:'100px'}}/>
