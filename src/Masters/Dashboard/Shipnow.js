@@ -23,11 +23,6 @@ const { RangePicker } = DatePicker;
 const { TextArea } = Input;
 
 export default function Inventoryexcel() {
-    const [componentDisabled, setComponentDisabled] = useState(true);
-    const onFormLayoutChange = ({ disabled }) => {
-        setComponentDisabled(disabled);
-    };
-
     const navigate = useNavigate();
     const [isSubmit, setSubmit] = useState(false);
     const [details, setDetails] = useState();
@@ -37,14 +32,15 @@ export default function Inventoryexcel() {
         setIsModalOpen(false);
         navigate('/masters/dashboard/payments')
     };
-      const handleCancel = () => {
-        setIsModalOpen(false);
-      };
+    const handleCancel = () => {
+    setIsModalOpen(false);
+    };
       
       const onFinish = (values) =>{
-        console.log("ygqiuwrhgquwhgowirgoiqw");
+        console.log(values);
         setDetails(values);
-        console.log(details);
+        console.log(details.name);
+        setIsModalOpen(true);
     }
     const onFinishFailed = () =>{
         alert("Failed to proceed")
@@ -98,16 +94,27 @@ export default function Inventoryexcel() {
                 onFinishFailed={onFinishFailed}
                 autoComplete="off"
             >
-                <Form.Item label="Name">
-                <Input />
+                <Form.Item
+                style={{ color: "black" }}
+                label={
+                    <p style={{ fontSize: "15px",color: "black",marginTop: "18px",}}>Name</p>
+                }
+                name="name"
+                // rules={[
+                //     {required: true,message: "Please input your Pickup PIN!"}
+                // ]}
+                >
+                <Input size="large" />
                 </Form.Item>
-                <Form.Item label="Select">
+                
+                <Form.Item label="Select" name="select">
                 <Select>
                     <Select.Option value="byroad">By Road</Select.Option>
                     <Select.Option value="byair">By Air</Select.Option>
                 </Select>
                 </Form.Item>
-                <Form.Item label="Region Selection">
+
+                <Form.Item label="Region Selection" name="region">
                 <TreeSelect
                     treeData={[
                     {
@@ -137,25 +144,27 @@ export default function Inventoryexcel() {
                     ]}
                 />
                 </Form.Item>
-                <Form.Item label="Pickup date">
+
+                <Form.Item label="Pickup date" name="pickdate">
                 <DatePicker />
                 </Form.Item>
-                <Form.Item label="RangePicker">
+                <Form.Item label="RangePicker" name="droppicker">
                 <RangePicker />
                 </Form.Item>
-                <Form.Item label="Number of Items">
+                <Form.Item label="Number of Items" name="items">
                 <InputNumber />
                 </Form.Item>
-                <Form.Item label="Handeling Instructions">
+                <Form.Item label="Handeling Instructions" name="hins">
                 <TextArea rows={4} />
                 </Form.Item>
-                <Form.Item label="Pickup Address">
+                <Form.Item label="Pickup Address" name="pickaddress">
                 <TextArea rows={4} />
                 </Form.Item>
-                <Form.Item label="Drop Address">
+                <Form.Item label="Drop Address" name="dropaddress">
                 <TextArea rows={4} />
                 </Form.Item>
-                <Form.Item label="Is Fragile ?" valuePropName="checked">
+
+                <Form.Item label="Is Fragile ?" valuePropName="checked" name="fragile">
                 <Switch />
                 </Form.Item>
                 <Form.Item label="Upload" valuePropName="fileList">
@@ -167,32 +176,33 @@ export default function Inventoryexcel() {
                     </div>
                     </div>
                 </Upload>
-                </Form.Item>    
-                <Form.Item label={"Submit"}>
-                <Button type='primary' size={'large'} onClick={navigate('/masters/dashboard/payments')}>Make Payment</Button>
                 </Form.Item>
-                </Form>
+                <Form.Item>
+                <Button type="primary" htmlType="submit" size="large" style={{ width: "150%" }} onClick={navigate(`/masters/dashboard/payments`)}>
+                    Make Payment
+                </Button>
+                </Form.Item>
+            </Form>
             </Col>
         </Row>  
         <div>
-        <Modal title="Confirm the delevery Details" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+        {/* <Modal title="Confirm the delevery Details" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
                 <Row>
                     <Col span={12}>
-                        {/* <p>block: {pickup.block}</p>
-                        <p>circle: {pickup.circle}</p>
-                        <p>country: {pickup.country}</p>
-                        <p>district: {pickup.district}</p>
-                        <p>division: {pickup.division}</p> */}
+                        <p>block: {details.name}</p>
+                        <p>circle: {details.dropaddress}</p>
+                        <p>country: {details.droppicker[0]._d}</p>
+                        <p>district: {details.fragile}</p>
                     </Col>
                     <Col span={12}>
-                        {/* <p>block: {drop.block}</p>
-                        <p>circle: {drop.circle}</p>
-                        <p>country: {drop.country}</p>
-                        <p>district: {drop.district}</p>
-                        <p>division: {drop.division}</p> */}
+                        <p>block: {details.hins}</p>
+                        <p>circle: {details.items}</p>
+                        <p>country: {details.pickaddress._d}</p>
+                        <p>district: {details.region}</p>
+                        <p>division: {details.select}</p>
                     </Col>
                 </Row>
-            </Modal>
+            </Modal> */}
         </div>
      </>
   )
